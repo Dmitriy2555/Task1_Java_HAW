@@ -15,7 +15,7 @@ public class Main {
         System.out.println("\nFunktionalität der Menge mit String");
 
         menge1.hinzufuegen("Dima");
-        menge1.hinzufuegen("Alex");
+        menge1.hinzufuegen("Alexx");
         menge1.hinzufuegen("Roma");
         System.out.println("Hinzufügen des Elements " + menge1.hinzufuegen("Nikita"));
         System.out.println("Entfernen des Elements " + menge1.entfernen("Alex"));

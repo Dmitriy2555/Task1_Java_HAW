@@ -87,7 +87,6 @@ public class Menge <T> implements Kontainer<T>{
         return AnzahlElementen;
     }
 
-    //???
     @Override
     public String toString()
     {
