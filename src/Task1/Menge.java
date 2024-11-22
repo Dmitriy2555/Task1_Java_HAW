@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class Menge <T> implements Kontainer<T>{
     private Object [] Elemente;
-    static private int AnzahlElementen;
+    private int AnzahlElementen;
 
     Menge()
     {
@@ -23,7 +23,7 @@ public class Menge <T> implements Kontainer<T>{
         {
             Object [] arCopy = Arrays.copyOf(Elemente, Elemente.length);
             Elemente = new Object[arCopy.length*2];
-            Elemente[AnzahlElementen] = el;
+            System.arraycopy(arCopy, 0, Elemente, 0, arCopy.length);
             AnzahlElementen++;
         }
         Elemente[AnzahlElementen] = el;
@@ -35,7 +35,7 @@ public class Menge <T> implements Kontainer<T>{
     {
         for(Object e: Elemente)
         {
-            if(e.hashCode() == el.hashCode() || e.equals(el))
+            if(e != null && (e.hashCode() == el.hashCode() || e.equals(el)))
             {
                 return true;
             }
@@ -51,22 +51,21 @@ public class Menge <T> implements Kontainer<T>{
             return false;
         }
 
-        Object [] arrayCopy = Arrays.copyOf(Elemente, Elemente.length);
-
-        int delIndex = 0;
-        for(int i = 0; i < arrayCopy.length; i++)
-        {
-            if(arrayCopy[i].equals(el))
-            {
+        int delIndex = -1;
+        for (int i = 0; i < AnzahlElementen; i++) {
+            if (Elemente[i].equals(el)) {
                 delIndex = i;
+                break;
             }
         }
-        for(int i = delIndex; i < arrayCopy.length - 1; i++)
+
+        if (delIndex == -1) return false;
+
+        for(int i = delIndex; i < AnzahlElementen; i++)
         {
-            arrayCopy[i] = arrayCopy[i + 1];
+            Elemente[i] = Elemente[i + 1];
         }
-        arrayCopy[arrayCopy.length - 1] = 0;
-        Elemente = arrayCopy;
+        Elemente[AnzahlElementen - 1] = null;
         AnzahlElementen--;
         return true;
     }
@@ -92,6 +91,16 @@ public class Menge <T> implements Kontainer<T>{
     @Override
     public String toString()
     {
-        return "";
+        String resultat = "";
+        for(int i = 0; i < AnzahlElementen; i++)
+        {
+            if(i == AnzahlElementen - 1)
+            {
+                resultat = resultat + Elemente[i] + ".";
+                break;
+            }
+            resultat = resultat + Elemente[i] + ", ";
+        }
+        return "Menge: " + resultat;
     }
 }
