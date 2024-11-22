@@ -22,5 +22,22 @@ public class Main {
         System.out.println("Random Element: " + menge1.LiefernRandom());
         System.out.println("Anzahl der Elementen: " + menge1.getAnzahlElementen());
         System.out.println(menge1.toString());
+
+        System.out.println("\nFunktionalität der Menge mit Karten");
+        Sammlung sammlungVonKarten = new Sammlung();
+        SammelKarte karte1 = new SammelKarte(Seltenheit.HAEUFIG, "Karte A");
+        SammelKarte karte2 = new SammelKarte(Seltenheit.NORMAL, "Karte B");
+        SammelKarte karte3 = new SammelKarte(Seltenheit.SELTEN, "Karte C");
+
+        System.out.println("Karte hinzufügen: " + sammlungVonKarten.hinzufuegen(karte1));
+        System.out.println("Karte entfernen: " + sammlungVonKarten.entfernen(karte1));
+
+        sammlungVonKarten.hinzufuegen(karte3);
+        System.out.println("Isd die Karte beinhaltet: " + sammlungVonKarten.beinhaltet(karte3));
+
+        sammlungVonKarten.hinzufuegen(karte2);
+        sammlungVonKarten.hinzufuegen(karte1);
+        System.out.println("[Alle Karte]: " + sammlungVonKarten.toString());
+
     }
 }
